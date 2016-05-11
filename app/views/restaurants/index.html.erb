@@ -1,0 +1,10 @@
+<!-- app/views/restaurants/index.html.erb -->
+<% @restaurants.each do |restaurant| %>
+  <h2><%= link_to restaurant.name, restaurant_path(restaurant) %></h2>
+  <p><%= restaurant.address %></p>
+  <p><%= restaurant.phone %></p>
+  <p><%= restaurant.category %></p>
+  <%= link_to "Delete", restaurant_path(restaurant),
+      method: :delete,
+      data: { confirm: "Are you sure?" } %>
+<% end %>
