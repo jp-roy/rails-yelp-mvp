@@ -1,15 +1,10 @@
-<%= form_for(@restaurant) do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
+<%= simple_form_for(@restaurant) do |f| %>
+  <%= f.error_notification %>
 
-  <%= f.label :address %>
-  <%= f.text_field :address %>
+  <%= f.input :name %>
+  <%= f.input :address %>
+  <%= f.input :phone_number %>
+  <%= f.input :category %>
 
-  <%= f.label :phone %>
-  <%= f.text_field :phone %>
-
-  <%= f.label :category %>
-  <%= f.text_field :category %>
-
-  <%= f.submit %>
+  <%= f.button :submit %>
 <% end %>

@@ -1,5 +1,14 @@
 <!-- app/views/restaurants/show.html.erb -->
 <h2><%= @restaurant.name %></h2>
 <p><%= @restaurant.address %></p>
-<p><%= @restaurant.phone %></p>
+<p><%= @restaurant.phone_number %></p>
 <p><%= @restaurant.category %></p>
+<h2>Reviews :</h2>
+<ol>
+<% @restaurant.reviews.each do |review| %>
+  <li>
+  <%= review.content + " - rating : " + review.rating.to_s %>
+  </li>
+<% end %>
+</ol>
+<%= link_to "Back", restaurants_path %>

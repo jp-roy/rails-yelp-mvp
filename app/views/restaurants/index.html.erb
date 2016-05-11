@@ -1,8 +1,9 @@
 <!-- app/views/restaurants/index.html.erb -->
+<h1><%= link_to "Create new", new_restaurant_path %></h1>
 <% @restaurants.each do |restaurant| %>
   <h2><%= link_to restaurant.name, restaurant_path(restaurant) %></h2>
   <p><%= restaurant.address %></p>
-  <p><%= restaurant.phone %></p>
+  <p><%= restaurant.phone_number %></p>
   <p><%= restaurant.category %></p>
   <%= link_to "Delete", restaurant_path(restaurant),
       method: :delete,
