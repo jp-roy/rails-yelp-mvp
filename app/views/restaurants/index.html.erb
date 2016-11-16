@@ -1,11 +1,20 @@
 <!-- app/views/restaurants/index.html.erb -->
-<h1><%= link_to "Create new", new_restaurant_path %></h1>
-<% @restaurants.each do |restaurant| %>
-  <h2><%= link_to restaurant.name, restaurant_path(restaurant) %></h2>
-  <p><%= restaurant.address %></p>
-  <p><%= restaurant.phone_number %></p>
-  <p><%= restaurant.category %></p>
-  <%= link_to "Delete", restaurant_path(restaurant),
-      method: :delete,
-      data: { confirm: "Are you sure?" } %>
-<% end %>
+<div class="header text-center">
+  <h1>Yelp</h1>
+  <p><%= link_to "Create new restaurant", new_restaurant_path %></p>
+</div>
+
+<div class="container">
+  <div class="row">
+  <% @restaurants.each do |restaurant| %>
+    <div class="col-xs-12 col-sm-6 col-lg-4">
+      <div class="card">
+        <%= render "restaurant_card", restaurant: restaurant %>
+      </div>
+    </div>
+  <% end %>
+  </div>
+</div>
+
+
+

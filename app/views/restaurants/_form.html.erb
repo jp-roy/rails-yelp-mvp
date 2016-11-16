@@ -1,10 +1,22 @@
-<%= simple_form_for(@restaurant) do |f| %>
-  <%= f.error_notification %>
+<div class="restaurants">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-10 col-xs-offset-1">
+        <div class="restaurant">
+          <%= simple_form_for(@restaurant) do |f| %>
+            <%= f.error_notification %>
 
-  <%= f.input :name %>
-  <%= f.input :address %>
-  <%= f.input :phone_number %>
-  <%= f.input :category %>
+            <%= f.input :name %>
+            <%= f.input :address %>
+            <%= f.input :phone_number %>
+            <%= f.input :category %>
 
-  <%= f.button :submit %>
-<% end %>
+            <%= f.button :submit %>
+          <% end %>
+          <br>
+          <%= link_to "Back", restaurants_path %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,14 +1,44 @@
 <!-- app/views/restaurants/show.html.erb -->
-<h2><%= @restaurant.name %></h2>
-<p><%= @restaurant.address %></p>
-<p><%= @restaurant.phone_number %></p>
-<p><%= @restaurant.category %></p>
-<h2>Reviews :</h2>
-<ol>
-<% @restaurant.reviews.each do |review| %>
-  <li>
-  <%= review.content + " - rating : " + review.rating.to_s %>
-  </li>
-<% end %>
-</ol>
-<%= link_to "Back", restaurants_path %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <%= render "restaurants/restaurant_card", restaurant: @restaurant %>
+      <br>
+      <div class="text-center">
+        <%= link_to "Delete", restaurant_path(@restaurant),
+            method: :delete,
+            data: { confirm: "Are you sure?" },
+            class: "btn btn-primary btn_width" %>
+        <span>   </span>
+        <%= link_to "Edit", edit_restaurant_path(@restaurant), class: "btn btn-primary btn_width" %>
+        <span>   </span>
+        <%= link_to "Add review", new_restaurant_review_path(@restaurant), class: "btn btn-primary btn_width" %>
+      </div>
+      <br>
+      <div class="review">
+        <%= simple_form_for([@restaurant, @review]) do |f| %>
+          <%= f.error_notification %>
+          <%= f.input :content, label: "Write your review here :", input_html: {class: "input-lg"} %>
+          <%= f.input :rating, collection: 1..5, prompt: "Rating / 5", selected: 3, label_html: {class: "label-lg"} %>
+          <%= f.button :submit, class: "text-center" %>
+        <% end %>
+        <br>
+        <%= link_to "Back", restaurants_path %>
+      </div>
+      <br>
+      <ul class="list-unstyled">
+      <% @restaurant.reviews.each do |review| %>
+        <li>
+        <%= review.content %>
+        <% review.rating.times do %>
+          <i class="fa fa-star"></i>
+        <% end %>
+        </li>
+      <% end %>
+      </ul>
+      <br>
+      <br>
+      <%= link_to "Back", restaurants_path %>
+    </div>
+  </div>
+</div>
